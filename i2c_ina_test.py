@@ -2,7 +2,6 @@
 # rospy for ros melodic integration
 # string for communication with REM-u interface
 from smbus2 import SMBus
-import smbus2 
 import rospy
 from std_msgs.msg import String
 
