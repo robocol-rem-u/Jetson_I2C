@@ -20,12 +20,14 @@ id = 0xFF
 bus_v1 = 0x2
 bus_v2 = 0x4
 bus_v3 = 0x6
+#jsjsjs 
 
 
 def main_i2c():
-    v1 = bus.read_block_data(bus,bus_v1)
-    print(v1)
-    pass
+    while not rospy.is_shutdown:
+        v1 = bus.read_block_data(bus,bus_v1)
+        print(v1)
+        pass
 
 if __name__ == '__main__':
 	try:
