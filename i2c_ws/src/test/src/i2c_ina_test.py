@@ -1,8 +1,10 @@
 # imports: smbus2 for i2c communication through jetson tx2 gpio. See pinout online. 
 # rospy for ros melodic integration
 # string for communication with REM-u interface
+#!/usr/bin/env python
 from smbus2 import SMBus
 import rospy
+from rospy.topics import Topic
 from std_msgs.msg import String
 
 # open i2c bus 1
@@ -13,7 +15,7 @@ address_a = 0x40
 address_b = 0x41
 
 # manufacturer id register pointer
-id = 0xFF
+id_reg = 0xFF
 
 # bus voltage registers
 bus_v1 = 0x2
@@ -23,8 +25,16 @@ bus_v3 = 0x6
 
 
 def main_i2c():
+    id = bus.read_block_data(address_a, id_reg)
+    print("Volage monitoring with TI INA3221.\n"
+        "Getting manufacturer id from register 0xFF... {0}".format(id))
+    
+    topic = 'Robocol/Power/voltages'
+    rospy.init_node('/Power_sense', anonymous=True)
+    pub = rospy.Publisher(topic, String,queue_size=10)
     while not rospy.is_shutdown:
         v1 = bus.read_block_data(bus,bus_v1)
+        pub.publish('')
         print(v1)
         pass
 
