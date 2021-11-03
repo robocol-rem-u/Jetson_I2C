@@ -36,7 +36,7 @@ def main_i2c():
         pub.publish('1:{}'.format(v1))
         print(v1)
         rate.sleep()
-        pass
+        
 
 if __name__ == '__main__':
 	try:
