@@ -27,7 +27,7 @@ def main_i2c():
         "Getting manufacturer id from register 0xFF... {0}".format(id))
     
     topic = 'Robocol/Power/voltages'
-    rospy.init_node('/Power_sense', anonymous=True)
+    rospy.init_node('Power_sense', anonymous=True)
     rate = rospy.Rate(10)
     pub = rospy.Publisher(topic, String,queue_size=10)
 
