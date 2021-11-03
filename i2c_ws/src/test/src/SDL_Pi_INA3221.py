@@ -7,7 +7,7 @@
 
 #encoding: utf-8
  
-from datetime import datetime
+
 
 import smbus
 
@@ -160,6 +160,6 @@ class SDL_Pi_INA3221():
     #Gets the current value in mA, taking into account the config settings and current LSB
     	
         valueDec = self.getShuntVoltage_mV(channel)/ SHUNT_RESISTOR_VALUE               
-        return valueDec;
+        return valueDec
 
 

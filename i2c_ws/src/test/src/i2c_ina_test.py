@@ -25,17 +25,20 @@ bus_v3 = 0x6
 
 
 def main_i2c():
-    id = bus.read_block_data(address_a, id_reg)
+    id = bus.read_word_data(address_a, id_reg)
     print("Volage monitoring with TI INA3221.\n"
         "Getting manufacturer id from register 0xFF... {0}".format(id))
     
     topic = 'Robocol/Power/voltages'
     rospy.init_node('/Power_sense', anonymous=True)
+    rate = rospy.Rate(10)
     pub = rospy.Publisher(topic, String,queue_size=10)
+
     while not rospy.is_shutdown:
-        v1 = bus.read_block_data(bus,bus_v1)
-        pub.publish('')
+        v1 = bus.read_word_data(bus,bus_v1)
+        pub.publish('1:{}'.format(v1))
         print(v1)
+        rate.sleep()
         pass
 
 if __name__ == '__main__':

@@ -9,7 +9,7 @@ def main_i2c():
     rospy.init_node('i2c_test', anonymous=True) #Inicio nodo
     rate = rospy.Rate(10) #10hz
     
-
+    pub = rospy.Publisher('Robocol/Potencia/voltages')
     with SMBus(1) as bus:
         # Write a byte to address 80, offset 0
         while not rospy.is_shutdown():
