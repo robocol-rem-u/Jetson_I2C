@@ -1,6 +1,3 @@
-# imports: smbus2 for i2c communication through jetson tx2 gpio. See pinout online. 
-# rospy for ros melodic integration
-# string for communication with REM-u interface
 #!/usr/bin/env python
 from smbus2 import SMBus
 import rospy
